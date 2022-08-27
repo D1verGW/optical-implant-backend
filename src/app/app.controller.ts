@@ -1,4 +1,4 @@
-import { Controller, Post, Req } from '@nestjs/common';
+import { Controller, Get, Post, Req } from '@nestjs/common';
 import { OcrService } from '../tesseract-ocr/ocr.service';
 
 type Rect2D = {
@@ -31,5 +31,11 @@ export class AppController {
     const lang = body.lang;
 
     return this.ocrService.recognize(imageData, lang, imageParams.width, imageParams.height);
+  }
+
+  @Get('/wake-up-neo')
+  async wakeUp(@Req() req: RecognizeMatrixRequestDTO) {
+    // Method to wake-up heroku server infrastructure
+    return "The matrix has you!";
   }
 }
